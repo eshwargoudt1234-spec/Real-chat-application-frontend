@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<title>Chat - Pulse Chat</title>
+</head>
+<body class="chat-body">
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><span>Pulse Chat</span></div>
+    <div class="topbar-right">
+      <div class="me">
+        <div class="avatar" id="meAvatar"></div>
+        <div class="me-text"><strong id="meName"></strong><span id="meUsername"></span></div>
+        <span class="conn" id="connDot" title="Connecting…"></span>
+      </div>
+      <button id="logoutBtn" class="btn btn-outline btn-sm" type="button">Log out</button>
+    </div>
+  </header>
+
+  <div id="connBanner" class="banner" hidden></div>
+
+  <main class="layout" id="layout">
+    <aside class="sidebar">
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="Search people" aria-label="Search people" autocomplete="off">
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="chats" role="tab" type="button">Chats</button>
+        <button class="tab" data-tab="people" role="tab" type="button">People</button>
+      </div>
+      <ul id="userList" class="user-list"></ul>
+    </aside>
+
+    <section class="chat" id="chatPanel">
+      <div id="emptyState" class="empty">
+        <div class="empty-icon" aria-hidden="true">💬</div>
+        <h2>Pick someone to talk to</h2>
+        <p>Choose a person from the list. New messages show up here instantly.</p>
+      </div>
+
+      <div id="chatView" class="chat-view" hidden>
+        <div class="chat-head">
+          <button id="backBtn" class="icon-btn back" type="button" aria-label="Back to conversations">←</button>
+          <div class="avatar" id="peerAvatar"></div>
+          <div class="peer">
+            <strong id="peerName"></strong>
+            <span id="peerStatus" class="peer-status"></span>
+          </div>
+        </div>
+        <div id="messages" class="messages" aria-live="polite"></div>
+        <div id="typingLine" class="typing-line" hidden></div>
+        <form id="messageForm" class="composer" autocomplete="off">
+          <input id="messageInput" type="text" maxlength="2000" placeholder="Type a message…" aria-label="Message">
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="toasts" class="toasts" aria-live="assertive"></div>
+</div>
+
+<!-- SockJS + STOMP client libraries (loaded from CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/chat.js"></script>
+</body>
+</html>
